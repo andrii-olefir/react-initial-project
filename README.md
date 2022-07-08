@@ -1,1 +1,2 @@
-# react-initial-project
+# React Initial Project
+# Webpack config
