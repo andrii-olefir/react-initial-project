@@ -6,3 +6,4 @@ lib
 storybook-static
 .npmrc
 yarn-error.log
+.env
