@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "module": "esnext",
+    "noEmit": true,
+    "allowJs": true,
+    "jsx": "react",
+    "target": "esnext",
+		"moduleResolution": "node",
+		"isolatedModules": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+, "src/index.js"  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.spec.tsx",
+    "src/**/*.d.tsx"
+  ]
+}
