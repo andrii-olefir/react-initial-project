@@ -1,0 +1,104 @@
+{
+  "env": {
+    "es2021": true,
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
+  ],
+
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "react-hooks",
+    "import",
+    "jsx-a11y",
+    "sonarjs"
+  ],
+
+  "rules": {
+    "react/button-has-type": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/destructuring-assignment": 1,
+    "react/no-danger": 2,
+
+    "react/jsx-props-no-spreading": 0,
+    "react/function-component-definition": 0,
+    "react/require-default-props": 0,
+    "react/no-unstable-nested-components": 0,
+    "react-hooks/exhaustive-deps": 1,
+    "react-hooks/rules-of-hooks": 2,
+
+    "global-require": 0,
+    "prefer-regex-literals": 1,
+    "no-console": 1,
+    "indent": [2, 2, { "SwitchCase": 1, "flatTernaryExpressions": true }],
+    "prefer-const": 2,
+    "quotes": [2, "single"],
+    "jsx-quotes": [2, "prefer-double"],
+    "max-len": [2, { "code": 120 }],
+    "no-confusing-arrow": [2, { "allowParens": true }],
+    "no-constant-condition": [2, { "checkLoops": false }],
+
+    "@typescript-eslint/no-unused-expressions": 0,
+    "@typescript-eslint/no-use-before-define": 0,
+
+    "sonarjs/no-extra-arguments": 1,
+    "sonarjs/no-identical-conditions": 1,
+    "sonarjs/no-identical-expressions": 1,
+    "sonarjs/no-one-iteration-loop": 1,
+    "sonarjs/cognitive-complexity": [1, 20],
+    "sonarjs/max-switch-cases": [1, 15],
+    "sonarjs/no-collapsible-if": 1,
+    "sonarjs/no-collection-size-mischeck": 1,
+    "sonarjs/no-duplicate-string": [1, 4],
+    "sonarjs/no-duplicated-branches": 1,
+    "sonarjs/no-identical-functions": 1,
+    "sonarjs/no-inverted-boolean-check": 1,
+    "sonarjs/no-redundant-boolean": 1,
+    "sonarjs/no-redundant-jump": 1,
+    "sonarjs/no-same-line-conditional": 1,
+    "sonarjs/no-small-switch": 1,
+    "sonarjs/no-unused-collection": 1,
+    "sonarjs/no-useless-catch": 1,
+    "sonarjs/prefer-immediate-return": 1,
+    "sonarjs/prefer-object-literal": 1,
+    "sonarjs/prefer-single-boolean-return": 1,
+    "sonarjs/no-all-duplicated-branches": 1,
+
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "import/order": [
+      2,
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "newlines-between": "always-and-inside-groups"
+      }
+    ]
+  }
+}

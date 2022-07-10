@@ -1,4 +1,5 @@
 const path = require('path');
+// Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -20,75 +21,73 @@ const HTML_MINIFY = {
 };
 
 const config = {
-	mode: PROD_ENV,
-	entry: './src/index.js',
-	output: {
-		filename: 'bundle.js',
-		path: path.join(__dirname, 'dist'),
-	},
+  mode: NODE_ENV,
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist'),
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  }
 };
 
 config.plugins = [
-	new HtmlWebpackPlugin({
-		template: path.join(__dirname, 'src', 'index.html'),
-		minify: IS_PROD && HTML_MINIFY,
-	}),
-	new MiniCssExtractPlugin({ filename: 'style.css' }),
-	new CopyWebpackPlugin({
-		patterns: [
-			{
-				from: path.resolve(__dirname, 'src', 'assets', 'favicon.ico'),
-				to: path.resolve(__dirname, 'dist', 'assets'),
-			},
-		],
-	}),
+  new HtmlWebpackPlugin({
+    template: path.join(__dirname, 'src', 'index.html'),
+    minify: IS_PROD && HTML_MINIFY,
+  }),
+  new MiniCssExtractPlugin({ filename: 'style.css' }),
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: path.resolve(__dirname, 'src', 'assets', 'favicon.ico'),
+        to: path.resolve(__dirname, 'dist', 'assets'),
+      },
+    ],
+  }),
 ];
 
 config.module = {
-	rules: [
-		{
-			test: /\.(js|jsx|ts|tsx)$/,
-			exclude: /node_modules/,
-			loader: {
+  rules: [
+    {
+      test: /\.(js|jsx|ts|tsx)$/,
+      exclude: /node_modules/,
+      use: {
         loader: 'babel-loader',
         options: {
-          presets: [
-            '@babel/preset-env',
-            '@babel/preset-react',
-            '@babel/typescript'
-          ]
-        }
+          presets: ['@babel/preset-env', '@babel/preset-react', '@babel/typescript'],
+        },
       },
-		},
-		{
-			test: /\.(s[ac]ss|css)$/,
-			use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-		},
-		{
-			test: /\.(png|svg|jpg|jpeg|gif)$/i,
-			type: 'asset/resource',
-		},
-		{
-			test: /\.(woff|woff2|eot|ttf|otf)$/i,
-			type: 'asset/resource',
-		},
-	],
-};
-
-config.resolve = {
-	alias: {
-		'@': path.join(__dirname),
-	},
+    },
+    {
+      test: /\.(s[ac]ss|css)$/,
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+    },
+    {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset/resource',
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: 'asset/resource',
+    },
+  ],
 };
 
 if (IS_DEV) {
-	config.mode = DEV_ENV;
-	config.devtool = 'inline-source-map';
-	config.devServer = { port: PORT };
+  config.mode = DEV_ENV;
+  config.devtool = 'inline-source-map';
+  config.devServer = { port: PORT };
 }
 
 if (IS_PROD) {
-	config.optimization = { minimizer: [new OptimizeCssAssetsWebpackPlugin(), new TerserWebpackPlugin()] };
+  config.optimization = {
+    minimizer: [
+      new OptimizeCssAssetsWebpackPlugin(),
+      new TerserWebpackPlugin(),
+    ],
+  };
 }
 
 module.exports = config;
